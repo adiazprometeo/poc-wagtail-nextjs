@@ -1,0 +1,25 @@
+version: '3.9'
+
+# ========================= SERVICES =======================
+services:
+
+  # ======================= SPHINX =========================
+  sphinx:
+    image: sphinx/sphinx-docs:1.0.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: sphinx-documentation
+    restart: always
+    ports:
+      - '9011:9011'
+    volumes:
+      - ./docs:/usr/src/docs
+    networks:
+      - docs-sphinx-network
+  # ======================= SPHINX =========================
+
+# ========================= NETWORKS =======================
+networks:
+  docs-sphinx-network:
+    driver: bridge

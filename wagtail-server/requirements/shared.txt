@@ -1,0 +1,33 @@
+# ========= SHARED PACKAGES =========
+
+# Django: A high-level Python web framework that encourages rapid development and clean, pragmatic design
+# Django==3.2.15
+Django==4.1
+
+# wagtail: A Django content management system
+#wagtail==3.0.1
+wagtail==4.0rc2
+
+# django-split-settings: Organize Django settings into multiple files and directories. Easily override and modify settings. Use wildcards and optional settings files
+django-split-settings==1.1.0
+
+# python-decouple: Strict separation of settings from code
+python-decouple==3.6
+
+# structlog: Structured Logging for Python
+structlog==22.1.0
+
+# dj-database-url: Use Database URLs in your Django Application
+dj-database-url==1.0.0
+
+# psycopg2-binary: PostgreSQL database adapter for Python -- C optimisation distribution
+psycopg2-binary==2.9.3
+
+# health-check: Health Check is an application that provides an API to check the health health_check of some parts and some utilities like ping requests
+# health-check==3.4.1
+
+# bcrypt: Modern password hashing for your software and your servers
+bcrypt==4.0.0
+
+# djangorestframework: Web APIs for Django, made easy
+djangorestframework==3.13.1

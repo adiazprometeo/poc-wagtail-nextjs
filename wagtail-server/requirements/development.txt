@@ -1,0 +1,22 @@
+# ========= DEVELOPMENT PACKAGES =========
+
+# Shared packages
+-r shared.txt
+
+# IPython: Productive Interactive Computing
+ipython==8.4.0
+
+# nplusone: Detecting the n+1 queries problem in Python
+nplusone==1.0.0
+
+# django-querycount: Middleware that Prints the number of DB queries to the runserver console
+django-querycount==0.7.0
+
+# factory-boy: A versatile test fixtures replacement based on thoughtbot's factory_bot for Ruby
+factory-boy==3.2.1
+
+# wagtail-factories: Factory boy classes for wagtail
+wagtail-factories==3.1.0
+
+# coverage: Code coverage measurement for Python
+coverage==6.4.4

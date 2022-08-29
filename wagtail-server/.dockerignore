@@ -1,0 +1,10 @@
+# In .dockerignore
+# Exclude everything
+#
+*
+
+# Now un-exclude
+#
+!src
+!requirements
+!config

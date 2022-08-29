@@ -1,0 +1,44 @@
+# This docker-compose file is required to bind ports in development,
+# since binding ports in regular compose file will ruin scaling
+# in production. Due to how `ports` directive is merged with two files.
+#
+# This file is ignored in production, but
+# it is automatically picked up in development with:
+#
+#  $ docker-compose up -d
+
+# ========================= VERSION ========================
+version: "3.9"
+
+# ========================= SERVICES =======================
+services:
+
+  # ========================= WAGTAIL ==========================
+  wagtail-api:
+    image: prometeo/wagtail-api-development:1.0.0
+    container_name: wagtail-api-development
+    build:
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+      args:
+        - AENVIRONMENT=development
+    # command: "python3 -m http.server 9099"
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:9099"
+    ports:
+      - 9099:9099
+    volumes:
+      - ./src:/usr/src/app/
+      - /usr/src/app/config
+    healthcheck:
+      # We use `$$` here because:
+      # one `$` goes to shell,
+      # one `$` goes to `docker-compose.yml` escaping
+      test: /usr/bin/test $$(/usr/bin/curl -LI http://localhost:9099/health/?format=json -o /dev/null -w '%{http_code}\n' -s) -eq 200 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+  # ========================= WAGTAIL =========================

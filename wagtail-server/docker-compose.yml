@@ -1,0 +1,60 @@
+# ========================= VERSION ========================
+version: "3.9"
+
+# ========================= SERVICES =======================
+services:
+  # ========================== WAGTAIL =========================
+  wagtail-api:
+    image: prometeo/wagtail-api-production:1.0.0
+    container_name: wagtail-api-production
+    build:
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+    command: >
+      sh -c "gunicorn -c /usr/src/app/server/gunicorn_conf.py server.wsgi:application"
+    restart: always
+    env_file:
+      - ./src/config/.env
+    links:
+      - wagtail-database
+    depends_on:
+      wagtail-database:
+        condition: service_healthy
+    ports:
+      - 9099:9099
+    networks:
+      - wagtail-network
+  # ========================== WAGTAIL =========================
+  # ======================= POSTGRESQL DB ==================
+  wagtail-database:
+    container_name: wagtail-database
+    image: postgres:12-alpine
+    restart: always
+    env_file:
+      - ./src/config/.env
+    ports:
+      - 5432:5432
+    volumes:
+      - wagtail-database:/var/lib/postgresql/data
+    networks:
+      - wagtail-network
+    healthcheck:
+      # We use `$$` here because:
+      # one `$` goes to shell,
+      # one `$` goes to `docker-compose.yml` escaping
+      test: pg_isready -U $$POSTGRES_USER -h prometeo-database -p 5432 -d $$POSTGRES_DB -q
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  # ======================= POSTGRESQL DB ==================
+
+# ========================= VOLUMES ========================
+volumes:
+  wagtail-database: {}
+
+# ========================= NETWORKS =======================
+networks:
+  # Network for your internals, use it by default
+  wagtail-network:
+    name: wagtail-network
+    driver: bridge

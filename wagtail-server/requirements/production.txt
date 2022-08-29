@@ -1,0 +1,4 @@
+# ========= PRODUCTION PACKAGES =========
+
+# Shared packages
+-r shared.txt
