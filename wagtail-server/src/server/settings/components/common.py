@@ -50,7 +50,6 @@ INSTALLED_APPS: Tuple[str, ...] = (
     # Wagtail
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
-    'wagtail.contrib.routable_page',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -60,6 +59,7 @@ INSTALLED_APPS: Tuple[str, ...] = (
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail.contrib.routable_page',
     
     'modelcluster',
     'taggit',

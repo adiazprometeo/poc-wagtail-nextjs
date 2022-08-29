@@ -21,7 +21,7 @@
 ## Tech
 - [Python](https://docs.python.org/3/whatsnew/3.10.html) 3.10.6
 - [Django](https://devdocs.io/django~4.1/) 4.1
-- [Wagtail](https://docs.wagtail.org/en/stable/) 4.0rc2
+- [Wagtail](https://docs.wagtail.org/en/latest/releases/4.0.html) 4.0rc2
 - [Node](https://nodejs.org/docs/latest-v14.x/api/) 14.17.6
 - [Next.js](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs) 12.2.5
 - [React](https://reactjs.org/docs/getting-started.html) 18.2.0
@@ -46,7 +46,7 @@ $> conda create -n poc-wagtail-nextjs-venv python=3.10
 $> conda activate poc-wagtail-nextjs-venv
 
 # Install Django dependencies
-$(poc-wagtail-nextjs-venv)> pip install "django==3.2.15"
+$(poc-wagtail-nextjs-venv)> pip install "django==4.1"
 
 # Create folder wagtail-server
 $(poc-wagtail-nextjs-venv)> mkdir -p wagtail-server && cd wagtail-server
