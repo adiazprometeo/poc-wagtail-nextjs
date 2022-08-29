@@ -61,6 +61,7 @@ INSTALLED_APPS: Tuple[str, ...] = (
     'wagtail.core',
     'wagtail.contrib.routable_page',
     
+    'wagtail_headless_preview',
     'modelcluster',
     'taggit',
 

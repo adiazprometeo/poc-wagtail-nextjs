@@ -31,3 +31,6 @@ bcrypt==4.0.0
 
 # djangorestframework: Web APIs for Django, made easy
 djangorestframework==3.13.1
+
+# wagtail-headless-preview: Enhance Wagtail previews in headless setups
+wagtail-headless-preview==0.3.0

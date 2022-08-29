@@ -28,7 +28,7 @@ services:
   # ======================= POSTGRESQL DB ==================
   wagtail-database:
     container_name: wagtail-database
-    image: postgres:12-alpine
+    image: postgres:14-alpine
     restart: always
     env_file:
       - ./src/config/.env

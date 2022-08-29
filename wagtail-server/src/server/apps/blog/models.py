@@ -1,7 +1,9 @@
+import urllib.parse
+from django.conf import settings
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.module_loading import import_string
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponseRedirect
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag as TaggitTag
@@ -10,13 +12,15 @@ from wagtail.admin.edit_handlers import (
     FieldPanel,
     InlinePanel,
 )
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.snippets.models import register_snippet
 from .blocks import BodyBlock
 
-class BasePage(Page):
+
+class BasePage(HeadlessPreviewMixin, Page):
     serializer_class = None
     
     class Meta:
@@ -83,9 +87,13 @@ class BasePage(Page):
         return context
 
     def serve(self, request, *args, **kwargs):
-        context = self.get_context(request, *args, **kwargs) 
-        
-        return JsonResponse(context['page_component'])
+        if request.content_type == 'application/json':
+            context = self.get_context(request, *args, **kwargs)
+            return JsonResponse(context['page_component'])
+        else:
+            full_path = request.get_full_path()
+            return HttpResponseRedirect(urllib.parse.urljoin(settings.NEXT_PUBLIC_NEXT_BASE, full_path))
+
 
 class BlogPage(RoutablePageMixin, BasePage):
     serializer_class = "server.apps.blog.serializers.BlogPageSerializer"
