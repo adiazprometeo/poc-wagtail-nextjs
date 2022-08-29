@@ -1,10 +1,10 @@
-import { getPage, getAllCategories, cleanUrlPaths } from "@helpers/wagtail";
+import { getPage, getAllCategories, cleanUrlPaths } from '@helpers/wagtail';
 
-export { default } from "../[...path]";
+export { default } from '../[...path]';
 
 export async function getStaticProps({ params }) {
   let path = params.path || [];
-  path = path.join("/");
+  path = path.join('/');
   // full path
   path = `category/${path}`;
 
@@ -22,7 +22,9 @@ export async function getStaticPaths() {
     let pageCount = data.paginator.numPages;
     const pageIndexArray = Array.from({ length: pageCount }, (_, i) => i + 1);
 
-    let paginationPaths = pageIndexArray.map((x) => `${category.slug}/page-${x}`);
+    let paginationPaths = pageIndexArray.map(
+      (x) => `${category.slug}/page-${x}`
+    );
     // do not forget to add the default category page
     totalUrls.push(...paginationPaths, `${category.slug}`);
   }

@@ -19,12 +19,13 @@
 16. Deploy the backend API to **DigitalOcean**
 
 ## Tech
-- [Python](https://docs.python.org/3/whatsnew/3.10.html) 3.10.4
+- [Python](https://docs.python.org/3/whatsnew/3.10.html) 3.10.6
 - [Django](https://devdocs.io/django~4.1/) 4.1
-- [Wagtail](https://docs.wagtail.org/en/stable/) 3.0.1
+- [Wagtail](https://docs.wagtail.org/en/stable/) 4.0rc2
 - [Node](https://nodejs.org/docs/latest-v14.x/api/) 14.17.6
-- [Next.js]() 11
-- [Bootstrap]() 5
+- [Next.js](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs) 12.2.5
+- [React](https://reactjs.org/docs/getting-started.html) 18.2.0
+- [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/) 5.2.0
 - [React Function Component](https://www.knowledgehut.com/blog/web-development/react-functional-components), [React Hooks](https://fettblog.eu/typescript-react/hooks/)
 - [SWR](https://swr.vercel.app/)
 - [Tribute.js](https://www.npmjs.com/package/tributejs)
@@ -84,7 +85,7 @@ $> pip install wagtail
 $(poc-wagtail-nextjs-venv)> python manage.py migrate
 
 # Create super user root
-$> python manage.py createsuperuser --username root --email root@example.com
+$> python manage.py createsuperuser --username root --email root@local.test
 
 # Run server
 $(poc-wagtail-nextjs-venv)> python manage.py runserver 9099

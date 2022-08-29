@@ -4,7 +4,7 @@ ARG AENVIRONMENT=production
 
 # ======================================= INSTALAR DEPENDENCIAS DEL PROYECTO =======================
 # == USAR PARA DESARROLLO Y PRUEBA =================================================================
-FROM python:3.9.4 AS development-builder
+FROM python:3.10.6 AS development-builder
 
 # -- Copiar los requerimientos --
 COPY ./requirements ./opt/requirements
@@ -22,7 +22,7 @@ RUN python -m venv /opt/venv \
 WORKDIR /opt
 # == USAR PARA DESARROLLO Y PRUEBA =================================================================
 # == USAR PARA PRODUCCION Y PUESTA EN ESCENA =======================================================
-FROM python:3.9.4 AS production-builder
+FROM python:3.10.6 AS production-builder
 
 # -- Copiar los requerimientos --
 COPY ./requirements ./opt/requirements
@@ -43,7 +43,7 @@ WORKDIR /opt
 
 # ======================================= ADICIONAR EL CODIGO DEL PROYECTO =========================
 # == USAR PARA DESARROLLO Y PRUEBA =================================================================
-FROM python:3.9.4-slim-buster AS development-code
+FROM python:3.10.6-slim-buster AS development-code
 
 # -- Descripciones de la imagen --
 LABEL maintainer="Alexei Diaz Soto - dsoto.alexei@gmail.com" \
@@ -87,13 +87,15 @@ RUN apt-get clean && DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get
     libffi-dev \
     libpq-dev \
     libxslt-dev \
+    gettext \
+    procps \
     swig \
     tzdata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get clean \
-    && apt-get autoremove \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
 # -- Crear grupo y usuario para ejectuar la aplicación --
@@ -104,7 +106,7 @@ RUN groupadd -r ${AAPP_GROUP} && useradd --no-log-init -r -g ${AAPP_GROUP} ${AAP
 USER ${AAPP_USER}:${AAPP_GROUP}
 # == USAR PARA DESARROLLO Y PRUEBA =================================================================
 # == USAR PARA PRODUCCION Y PUESTA EN ESCENA =======================================================
-FROM python:3.9.4-slim-buster AS production-code
+FROM python:3.10.6-slim-buster AS production-code
 
 # -- Descripciones de la imagen --
 LABEL maintainer="Alexei Diaz - dsoto.alexei@gmail.com" \
@@ -145,16 +147,19 @@ WORKDIR /usr/src/app
 # -- Instalar dependencias del sistema operativo --
 RUN apt-get clean && DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y \
     musl-dev \
+    curl \
     libffi-dev \
     libpq-dev \
     libxslt-dev \
+    gettext \
+    procps \
     swig \
     tzdata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get clean \
-    && apt-get autoremove \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./src .

@@ -1,12 +1,16 @@
 {
   "name": "nextjs-client",
+  "author": "Alexei Diaz",
+  "description": "A tutorial and template for creating a production-ready fullstack Next.js application",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "prepare": "cd .. && husky install nextjs-client/.husky"
   },
   "dependencies": {
     "bootstrap": "^5.2.0",
@@ -27,6 +31,13 @@
     "@types/react-lazy-load-image-component": "^1.5.2",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
     "typescript": "4.8.2"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
   }
 }

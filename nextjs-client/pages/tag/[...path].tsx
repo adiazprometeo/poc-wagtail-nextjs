@@ -1,10 +1,10 @@
-import { getPage, getAllTags, cleanUrlPaths } from "@helpers/wagtail";
+import { getPage, getAllTags, cleanUrlPaths } from '@helpers/wagtail';
 
-export { default } from "../[...path]";
+export { default } from '../[...path]';
 
 export async function getStaticProps({ params }) {
   let path = params.path || [];
-  path = path.join("/");
+  path = path.join('/');
   // full path
   path = `tag/${path}`;
 
