@@ -90,3 +90,16 @@ $> python manage.py createsuperuser --username root --email root@local.test
 # Run server
 $(poc-wagtail-nextjs-venv)> python manage.py runserver 9099
 ```
+
+## Deploy with Docker and Docker Compose
+
+```bash
+# Execute docker compose
+$> export DOCKER_DEFAULT_PLATFORM=linux/amd64 && docker compose up -d --build
+
+# Export data
+$> docker exec -it wagtail-database pg_dump  -U wagtail -p 5432 -d wagtail_db > db/wagtail_db.sql
+
+# Import data
+$> docker exec -i wagtail-database psql -U wagtail -p 5432 -d wagtail_db < db/wagtail_db.sql
+``` 

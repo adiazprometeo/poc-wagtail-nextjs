@@ -67,3 +67,14 @@ export async function getAllCategories() {
 export async function getAllTags() {
   return await getPaginationContent(`${API_BASE}/api/v1/nextjs/tag/`);
 }
+
+export async function getPagePreview(contentType: string, token: string, params: any, options: any) {
+  params = params || {};
+  params = {
+    contentType,
+    token,
+    ...params,
+  };
+
+  return await getRequest( `${API_BASE}/api/v1/nextjs/page_preview/`, params, options);
+}
