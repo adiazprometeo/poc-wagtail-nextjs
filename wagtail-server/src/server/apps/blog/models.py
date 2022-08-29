@@ -26,6 +26,14 @@ class BasePage(HeadlessPreviewMixin, Page):
     class Meta:
         abstract = True
 
+    @property
+    def seo_json_title(self):
+        return self.seo_title or self.title
+
+    @property
+    def seo_json_description(self):
+        return self.search_description
+
     def tags_list(self, context):
         tags = Tag.objects.all()
         blog_page = context['blog_page']
