@@ -4,16 +4,16 @@ import camelcaseKeys from 'camelcase-keys';
 
 const API_BASE = process.env.NEXT_PUBLIC_WAGTAIL_API_BASE;
 
-export function cleanUrlPaths(urlArray) {
+export function cleanUrlPaths(urlArray: Array<any>) {
   let tmpUrls = urlArray.filter((x) => x);
-  tmpUrls = tmpUrls.map((x) => x.split('/'));
-  tmpUrls = tmpUrls.map((x) => x.filter((y) => y));
-  tmpUrls = tmpUrls.filter((x) => x.length);
+  tmpUrls = tmpUrls.map((x: any) => x.split('/'));
+  tmpUrls = tmpUrls.map((x: any) => x.filter((y: any) => y));
+  tmpUrls = tmpUrls.filter((x: any) => x.length);
 
   return tmpUrls;
 }
 
-export async function getRequest(url: string, params: object, options?: any) {
+export async function getRequest(url: string, params?: object, options?: any) {
   params = params || {};
   params = snakecaseKeys(params, { deep: true });
   let headers = options?.headers || {};
@@ -39,8 +39,8 @@ export async function getPage(path: string, params?: any, options?: any) {
   return await getRequest(`${API_BASE}${relativePath}`, params, options);
 }
 
-async function getPaginationContent(url) {
-  let items = [];
+async function getPaginationContent(url: string) {
+  let items: Array<any> = [];
 
   while (true) {
     const data = await getRequest(url, { offset: items.length });
@@ -68,7 +68,7 @@ export async function getAllTags() {
   return await getPaginationContent(`${API_BASE}/api/v1/nextjs/tag/`);
 }
 
-export async function getPagePreview(contentType: string, token: string, params: any, options: any) {
+export async function getPagePreview(contentType: string, token: string, params?: any, options?: any) {
   params = params || {};
   params = {
     contentType,
@@ -76,5 +76,5 @@ export async function getPagePreview(contentType: string, token: string, params:
     ...params,
   };
 
-  return await getRequest( `${API_BASE}/api/v1/nextjs/page_preview/`, params, options);
+  return await getRequest(`${API_BASE}/api/v1/nextjs/page_preview/`, params, options);
 }

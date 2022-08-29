@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { LazyPages } from '@components/lazy-pages';
+import { HeadMeta } from '@components/head-meta';
 
 function PageProxy(props: any) {
   const { pageType } = props;
@@ -8,6 +9,7 @@ function PageProxy(props: any) {
   if (PageComponent) {
     return (
       <Fragment>
+        <HeadMeta {...props} />
         <PageComponent {...props} />
       </Fragment>
     );

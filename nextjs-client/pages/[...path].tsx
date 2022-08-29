@@ -21,7 +21,7 @@ async function getPaginationPaths() {
   return pageUrls.map((x) => ({ params: { path: x } }));
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   params = params || {};
   let path = params.path || [];
   path = path.join('/');

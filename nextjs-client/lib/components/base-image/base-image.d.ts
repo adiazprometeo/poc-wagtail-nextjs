@@ -7,5 +7,5 @@ interface IImage {
 
 export interface IBaseImageProps {
     img: IImage;
-    className: string;
+    className?: string;
 }

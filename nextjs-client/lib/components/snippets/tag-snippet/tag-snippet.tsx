@@ -8,7 +8,7 @@ const TagSnippet: NextPage = (props: any) => {
     <div className="card mb-4">
       <h5 className="card-header">Tags</h5>
       <div className="card-body">
-        {tagsList.map((tag: any) => (
+        {tagsList && tagsList.map((tag: any) => (
           <Link href={`${tag.url}`} key={tag.slug}>
             <a className="text-decoration-none">{tag.name}</a>
           </Link>

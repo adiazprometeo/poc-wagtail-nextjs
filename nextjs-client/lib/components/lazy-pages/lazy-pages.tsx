@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-const LazyPages = {
+const LazyPages: Record<string, any> = {
   PostPage: dynamic(async () => {
     const mod = await import('../post-page/post-page');
     return mod.PostPage;

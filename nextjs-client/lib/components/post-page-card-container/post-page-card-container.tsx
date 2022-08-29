@@ -47,10 +47,9 @@ function getPageItems(props: any, router: any) {
 
 function getFilterMsg(props: any) {
   const { filterMeta } = props;
-  let filterMsg = '';
 
   if (filterMeta.filterType) {
-    filterMsg = (
+    return (
       <Alert variant="primary">
         Results for{' '}
         <span>
@@ -60,7 +59,7 @@ function getFilterMsg(props: any) {
     );
   }
 
-  return filterMsg;
+  return null;
 }
 
 function PostPageCardContainer(props: any) {

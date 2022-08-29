@@ -1,5 +1,6 @@
 import urllib.parse
 from django.conf import settings
+from django.utils.functional import cached_property
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.module_loading import import_string
@@ -26,11 +27,11 @@ class BasePage(HeadlessPreviewMixin, Page):
     class Meta:
         abstract = True
 
-    @property
+    @cached_property
     def seo_json_title(self):
         return self.seo_title or self.title
 
-    @property
+    @cached_property
     def seo_json_description(self):
         return self.search_description
 

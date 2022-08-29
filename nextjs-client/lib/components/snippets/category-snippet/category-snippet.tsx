@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
-const CategorySnippet: NextPage = (props) => {
+const CategorySnippet: NextPage = (props: any) => {
   const { categoriesList } = props;
 
   return (
@@ -11,7 +11,7 @@ const CategorySnippet: NextPage = (props) => {
         <div className="row">
           <div className="col-lg-12">
             <ul className="list-unstyled mb-0">
-              {categoriesList.map((category: any) => (
+              {categoriesList && categoriesList.map((category: any) => (
                 <li key={category.slug}>
                   <Link href={`${category.url}`}>
                     <a className="text-decoration-none">{category.name}</a>

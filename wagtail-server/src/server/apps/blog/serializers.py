@@ -24,6 +24,8 @@ class BasePageSerializer(serializers.ModelSerializer):
             "title",
             "url",
             "last_published_at",
+            "seo_json_title",
+            "seo_json_description",
         )
 
 
