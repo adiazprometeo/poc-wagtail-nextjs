@@ -10,7 +10,7 @@ const TagSnippet: NextPage = (props: any) => {
       <div className="card-body">
         {tagsList && tagsList.map((tag: any) => (
           <Link href={`${tag.url}`} key={tag.slug}>
-            <a className="text-decoration-none">{tag.name}</a>
+            <a className="text-decoration-none">{tag.name}{' '}</a>
           </Link>
         ))}
       </div>

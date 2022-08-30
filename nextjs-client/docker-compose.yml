@@ -1,0 +1,25 @@
+# ========================= VERSION ========================
+version: "3.9"
+
+# ========================= SERVICES =======================
+services:
+  # ========================== WAGTAIL =========================
+  wagtail-nextjs:
+    image: prometeo/wagtail-nextjs-production:1.0.0
+    container_name: wagtail-nextjs-production
+    build:
+      context: .
+      dockerfile: ./docker/nextjs/Dockerfile
+    restart: always
+    env_file:
+      - ./.env.production
+    ports:
+      - 3002:3002
+    networks:
+      - wagtail-network
+  # ========================== WAGTAIL =========================
+
+# ========================= NETWORKS =======================
+networks:
+    wagtail-network:
+        external: true
