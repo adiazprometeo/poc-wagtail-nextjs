@@ -514,4 +514,7 @@ google-services.json
 # Android Profiling
 *.hprof
 
+nextjs-client/public/robots.txt
+nextjs-client/public/*.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/python,django,react,reactnative

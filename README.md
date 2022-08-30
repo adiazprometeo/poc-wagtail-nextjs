@@ -22,7 +22,7 @@
 - [Python](https://docs.python.org/3/whatsnew/3.10.html) 3.10.6
 - [Django](https://devdocs.io/django~4.1/) 4.1
 - [Wagtail](https://docs.wagtail.org/en/latest/releases/4.0.html) 4.0rc2
-- [Node](https://nodejs.org/docs/latest-v14.x/api/) 14.17.6
+- [Node](https://nodejs.org/docs/latest-v14.x/api/) 14.20.0
 - [Next.js](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs) 12.2.5
 - [React](https://reactjs.org/docs/getting-started.html) 18.2.0
 - [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/) 5.2.0
