@@ -46,7 +46,7 @@ function StreamField(props: any) {
     }
   }
 
-  return <>html</>;
+  return <>{html}</>;
 }
 
 export { StreamField };
